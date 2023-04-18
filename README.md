@@ -1,5 +1,9 @@
 <!-- Statistical Inference -->
 
+ Macros: {
+      bm: ["\\boldsymbol{#1}",1]
+ }
+
 [TOC]
 
 Slides are the same as the complete script.
