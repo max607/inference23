@@ -1,11 +1,5 @@
 <!-- Statistical Inference -->
 
-TeX: {
-  Macros: {
-    bm: ["{\\boldsymbol #1}",1],
-  }
-}
-
 [TOC]
 
 Slides are the same as the complete script.
@@ -62,3 +56,16 @@ Slides are the same as the complete script.
   * Cauchy distribution $\rightarrow$ there the location is the median <!-- TODO What is the scale? -->
     * Simulation: $C \sim \frac{N(0, 1)}{N(0, 1)}$
 * Mixture distributions, discrete mixtures
+
+## Linear and generalized linear parametric models
+
+### Linear model
+
+* $y_i | \bm{x}_i \sim N(\bm{x}_i^T\bm\beta, \sigma^2)$
+* Normality assumption is only necessary for confidence intervals, for $n \rightarrow \infty$, it can be dropped
+* $\bm\theta = (\bm\beta, \sigma^2)$
+
+### Generalized linear model
+
+* $\mathbb{E}(y_i | \bm{x}_i) = h(\bm{x}_i^T\bm\beta)$
+
