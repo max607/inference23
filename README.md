@@ -1,8 +1,10 @@
 <!-- Statistical Inference -->
 
- Macros: {
-      bm: ["\\boldsymbol{#1}",1]
- }
+TeX: {
+  Macros: {
+    bm: ["{\\boldsymbol #1}",1],
+  }
+}
 
 [TOC]
 
