@@ -47,6 +47,13 @@ Slides are the same as the complete script.
 * $f$ is strictly $r$-parametric $\rightarrow$ $\bm{T} \bot \bm{\gamma}$
 * The density can be factorized in a part which only depends on the data and a part which depends on the parameters
 
+### Properties
+
+* Have sufficient statistics
+* Concave likelihood
+* Have conjugate priors
+* Simplified calculations of expectations
+
 ### Examples
 
 * Simple linear exponential family
@@ -68,4 +75,31 @@ Slides are the same as the complete script.
 ### Generalized linear model
 
 * $\mathbb{E}(y_i | \bm{x}_i) = h(\bm{x}_i^T\bm\beta)$
+
+## Point estimator
+
+* missed one lecture $\rightarrow$ page 14
+* Mean squared error (MSE)
+  * $\text{MSE}_\theta(\bm{T}) = \mathbb{E}_\theta[(\bm{T} - \theta)(\bm{T} - \theta)^T] = \text{COV}_\theta(\bm{T}) + \text{Bias}_\theta(\bm{T})\text{Bias}_\theta(\bm{T})^T$
+  * There is a scalar and a matrix version
+  * $\text{MSE}_\theta(\bm{T}) = \text{trace}(\text{COV}_\theta(\bm{T})) + ||\text{Bias}_\theta(\bm{T})||^2$
+* The concept of "quality" is frequentist
+* In this interpretation the quality of the method $\bm{T}$ is evaluated
+
+## Confidence sets
+
+* Frequentist
+* $C_\alpha$
+
+## Hypothesis testing
+
+* Been there, done that
+* $\phi : \mathcal{X} \rightarrow \{A_0, A_1\} = \{0, 1\}$
+* $\phi(X) = \begin{cases}
+               1 & \text{if} \; T(\bm{x}) \in C_\alpha, \\
+               0 & \text{if} \; T(\bm{x}) \notin C_\alpha. \\
+             \end{cases}$
+* Power function
+  * $g_\phi(\bm\theta) = \mathbb{P}_\theta(A_1)$
+  * Level condition (reformulation): $g_\phi(\bm\theta) \leq \alpha \text{ for } \bm\theta \in \Theta_0$
 
