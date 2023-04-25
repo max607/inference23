@@ -102,4 +102,13 @@ Slides are the same as the complete script.
 * Power function
   * $g_\phi(\bm\theta) = \mathbb{P}_\theta(A_1)$
   * Level condition (reformulation): $g_\phi(\bm\theta) \leq \alpha \text{ for } \bm\theta \in \Theta_0$
+  * Type II error: $1 - g_\phi(\bm\theta)$
+    * Possible to calculate if both hypothesis are point hypothesis
+* p-value
+  * $p = \mathbb{P}(T(\bm{X}) > T(x) | \mu = \mu_0)$
+* S-value an alternative
+
+## Likelihood inference
+
+$\mathcal{L}$
 
