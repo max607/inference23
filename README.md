@@ -108,11 +108,20 @@ Slides are the same as the complete script.
   * $p = \mathbb{P}(T(\bm{X}) > T(x) | \mu = \mu_0)$
 * S-value an alternative
 
-## Likelihood inference
+## Risk
 
-$\mathcal{L}$
+* Minimax criterion
+* Bayesian criterion \
+  $\rightarrow$ Bayes optimal rule \
+  $\rightarrow$ Posterior Bayes risk
+  * Admissible
+  * Posterior expected value is Bayes optimal with the quadratic loss function
+  * Median posterior is Bayes optimal with the absolute loss function
+  * Posterior mode is Bayes optimal with the 0-1 loss function $\rightarrow$ ML estimator
+* Multiple imputation is Bayesian
+* criterion $\rightarrow$ rule $\rightarrow$ decision
 
-# Risk
+### Homework 2
 
 ```r
 library(ggplot2); theme_set(theme_bw())
@@ -125,4 +134,27 @@ ggplot() +
   geom_function(fun = r2, color = "blue") +
   xlim(-5, 5)
 ```
+
+# Classical estimation and testing theory
+
+* Basic model
+  * $\hat{\mathbb{P}} \in \mathcal{P} = \{f(\bm{x}|\bm{\theta}) : \bm{\theta} \in \Theta\}$
+* Statistic
+  * $\mathcal{X} \rightarrow \mathbb{R}^l$
+  * $\bm{x} \mapsto \bm{T}(\bm{x})$
+  * Example
+    * $\bm{T}$ estimator: $l = k$
+    * $T$ test: $l = 1$
+
+## Sufficiency
+
+* $p(\bm{x} | \bm{T}(\bm{X}) = \bm{t}, \theta) = p(\bm{x} | \bm{T}(\bm{X}) = \bm{t})$
+* $\Leftrightarrow  p(\bm{x} | \bm\theta) = h(\bm{x}) g(\bm{T}(\bm{x}) | \bm\theta)$
+* Was geht mit injektiv und Jacobi Matrix? <!-- TODO -->
+* The order statistic is sufficient for iid data, nice example
+
+## Minimal sufficiency
+
+* $\bm{T}(\bm{X}) = \bm{H}(\bm{V}(\bm{X}))$
+* I.e., $\bm{T}(\bm{X})$ can be calculated out of every other sufficient statistic.
 
