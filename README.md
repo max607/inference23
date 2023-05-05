@@ -112,3 +112,17 @@ Slides are the same as the complete script.
 
 $\mathcal{L}$
 
+# Risk
+
+```r
+library(ggplot2); theme_set(theme_bw())
+
+r1 <- function(x) 3^2 * pi^2 / 3 / 10
+r2 <- function(x) 3^2 * pi^2 / 12 / 10 + (1 - x)^2 / 4
+
+ggplot() +
+  geom_function(fun = r1, color = "red") +
+  geom_function(fun = r2, color = "blue") +
+  xlim(-5, 5)
+```
+
