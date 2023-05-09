@@ -2,7 +2,8 @@
 
 [TOC]
 
-Slides are the same as the complete script.
+Slides are the same as the complete script. \
+Distribution sheet on Moodle $\rightarrow$ allowed for exam.
 
 # Introduction
 
@@ -157,4 +158,48 @@ ggplot() +
 
 * $\bm{T}(\bm{X}) = \bm{H}(\bm{V}(\bm{X}))$
 * I.e., $\bm{T}(\bm{X})$ can be calculated out of every other sufficient statistic.
+
+## Completeness
+
+* $\mathbb{E}_\theta(g(\bm{T})) = 0\ \forall \theta \Rightarrow \mathbb{P}_\theta(g(\bm{T}) = 0) = 1\ \forall \theta$
+* Sufficiency $\wedge$ completeness $\Rightarrow$ minimum sufficiency
+* Minimum sufficiency $\nRightarrow$ completeness (example 2.9)
+
+## Bias, variance, MSE
+
+* $\text{MSE}_\theta(\hat\theta) = \mathbb{E}_\theta((\hat\theta - \theta)^2) = \mathbb{V}_\theta(\hat\theta) + \text{Bias}(\hat\theta)^2$
+* TODO implement example 2.10, Bayes estimator
+
+```r
+bayes_est <- function(x) {
+  n <- length(x)
+  a <- b <- sqrt(n) / 2
+  (sum(x) + a) / (a + b + n)
+}
+
+# Monte Carlo
+set.seed(1)
+p <- 0.7
+x <- replicate(5e4, rbinom(n = 1e3, size = 1, prob = p), simp = FALSE)
+x_std <- sapply(x, mean)
+x_bayes <- sapply(x, bayes_est)
+
+# Visual
+# plot(x_std - p, x_bayes - p)
+# abline(0,1)
+
+# MSE
+mean((x_std - p)^2)
+mean((x_bayes - p)^2)
+
+# Bias
+(mean(x_std) - p)^2
+(mean(x_bayes) - p)^2
+
+# Var
+mean((x_std - p)^2) - (mean(x_std) - p)^2
+mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
+```
+
+<!-- until p. 41 -->
 
