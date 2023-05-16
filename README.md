@@ -203,3 +203,28 @@ mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
 
 <!-- until p. 41 -->
 
+## Fisher information and sufficiency
+
+* Fisher regularity
+  * Support does not depend on $\theta$.
+* $\mathbb{E}(\bm{s}(\bm\theta | \bm{X})) = \bm0$
+* $\mathbb{V}(\bm{s}(\bm\theta | \bm{X})) = \mathcal{I}(\bm\theta)$
+* $iid$: every observation has the same information
+  * $\mathcal{I}(\bm\theta) = n \cdot i(\bm\theta)$
+  * $i(\bm\theta) = \mathbb{E}(-\ell''(\bm\theta | X_1)) = \mathbb{V}(\ell'(\bm\theta | X_1))$
+* $\mathcal{I}_{\bm{T}}(\bm\theta) = \mathcal{I}(\bm\theta) \Leftrightarrow \bm{T} \text{ is sufficient for } \bm\theta.$
+* C. R. Rao, 102 Jahre alt, still going strong
+
+<!-- until p. 46 -->
+
+## Consistency
+
+* Not defined relation between MSE and strong consistency
+* <!-- TODO --> Chebyshev inequality
+* Better notation for asymptotic normality
+  * $\sqrt{n}(\bar{X}_n - \mu) \overset{d}\rightarrow N(0, \sigma^2)\ \text{for}\ n \rightarrow \infty$
+  * $\sqrt{n} \bar{X}_n \overset{d}\rightarrow N(\sqrt{n}\mu, \sigma^2)\ \text{for}\ n \rightarrow \infty \rightarrow$ this is stupid
+* Roots of matrix unique except for rotation
+
+<!-- until p. 55 (test theory -->
+
