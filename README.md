@@ -136,7 +136,7 @@ ggplot() +
   xlim(-5, 5)
 ```
 
-# Classical estimation and testing theory
+# Classical estimation theory
 
 * Basic model
   * $\hat{\mathbb{P}} \in \mathcal{P} = \{f(\bm{x}|\bm{\theta}) : \bm{\theta} \in \Theta\}$
@@ -226,5 +226,17 @@ mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
   * $\sqrt{n} \bar{X}_n \overset{d}\rightarrow N(\sqrt{n}\mu, \sigma^2)\ \text{for}\ n \rightarrow \infty \rightarrow$ this is stupid
 * Roots of matrix unique except for rotation
 
-<!-- until p. 55 (test theory -->
+<!-- until p. 55 (test theory) -->
+
+# Classical test theory
+
+* Critical region $C_\alpha$
+* $\phi(\bm{X}) = \begin{cases}
+    1 & \text{if }\ T(\bm{X}) \in C_\alpha, \\
+    0 & \text{otherwise}.
+   \end{cases}$
+* Actions $A_0, A_1$, don't reject, reject
+* Power function $g_\phi(\theta) = \mathbb{E}_\theta(\phi(\bm{X})) = \mathbb{P}_\theta(A_1)$
+
+<!-- until ~p. 58 -->
 
