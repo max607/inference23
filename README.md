@@ -237,6 +237,7 @@ mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
    \end{cases}$
 * Actions $A_0, A_1$, don't reject, reject
 * Power function $g_\phi(\theta) = \mathbb{E}_\theta(\phi(\bm{X})) = \mathbb{P}_\theta(A_1)$
+* "We want a power of x if $\theta_1 = ... \rightarrow$ find $n$
 
-<!-- until ~p. 58 -->
+<!-- until ~p. 71 -->
 
