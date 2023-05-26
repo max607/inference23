@@ -240,4 +240,5 @@ mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
 * "We want a power of x if $\theta_1 = ... \rightarrow$ find $n$
 
 <!-- until ~p. 71 -->
+<!-- until ~p. 80 -->
 
