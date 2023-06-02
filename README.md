@@ -239,6 +239,7 @@ mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
 * Power function $g_\phi(\theta) = \mathbb{E}_\theta(\phi(\bm{X})) = \mathbb{P}_\theta(A_1)$
 * "We want a power of x if $\theta_1 = ... \rightarrow$ find $n$
 
-<!-- until ~p. 71 -->
-<!-- until ~p. 80 -->
+# Likelihood inference
+
+<!-- 89 -->
 
