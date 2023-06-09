@@ -241,5 +241,25 @@ mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
 
 # Likelihood inference
 
-<!-- 89 -->
+* MLE's are asymptotically unbiased BAN (best asymptotically normal) estimators.
+* Hypothesis $H_0: \bm{C} \bm\theta = \bm{d}$ vs. $H_1: \bm{C} \bm\theta \neq \bm{d}$
+* Dimension of $\bm{C}$ and $\bm{d}$ is $s$.
+* Likelihood ratio statistic $\lambda$
+  * $\lambda = 2 \log \left( \mathcal{L}(\hat\theta)/\mathcal{L}(\tilde\theta) \right)= 2(\ell(\hat\theta) - \ell(\tilde\theta))$
+  * $\lambda$ too large $\Rightarrow$ reject $H_0$
+  * Optimization under linear constraints $\rightarrow$ Lagrange method
+* Wald statistic $w$
+  * Standardized distance between hypothetical value $\bm{d}$ under $H_0$ and $\bm{C} \hat\theta$.
+  * $w$ too large $\Rightarrow$ reject $H_0$
+  * $w = \hat\beta_s^T \mathcal{I}_{s \times s}^{-1} \hat\beta_s$
+* Score/Rao statistic $u$
+  * Built out of $s(\tilde{\bm\theta}|\bm{x})$ (score function constructed w.r.t. $H_1$ model, plug in constraints, say $s_{\hat\theta}(\tilde{\bm\theta}|\bm{x})$)
+  * Idea: For $\hat{\bm\theta}, s(\hat{\bm\theta}|\bm{x}) = 0$
+  * $u$ too large $\Rightarrow$ reject $H_0$
+* $\lambda, w, u \overset{a}{\sim} \chi^2(s)$
+* Reject if $\lambda, w, u > \chi_{1 - \alpha}^2(s)$
+* Joint confidence intervals $\mathbb{P}_\theta(w \leq \chi_{1 - \alpha}^2(p)) \overset{a}{\approx} 1 - \alpha$ are hard to calculate and interpret.
+  They are ellipsoids.
+* Component wise confidence intervals assume independence of estimators (see multiple testing!)
 
+<!-- until p. 100 -->
