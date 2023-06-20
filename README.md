@@ -262,4 +262,9 @@ mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
   They are ellipsoids.
 * Component wise confidence intervals assume independence of estimators (see multiple testing!)
 
-<!-- until p. 100 -->
+# Bayesian inference
+
+* $f(\mu, \sigma^2 | x) \propto \text{likelihood} \times \text{prior}_\mu \times \text{prior}_{\sigma^2}\,,$ $\mu$ and $\sigma$ independent
+
+<!-- page 124 -->
+
