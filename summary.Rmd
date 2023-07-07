@@ -1,0 +1,83 @@
+---
+documentclass: article
+classoption:
+  twocolumn
+link-citations: true
+urlcolor: blue
+fontsize: 10pt
+linestretch: 1.15
+papersize: a4
+geometry: margin=10mm
+output:
+  bookdown::pdf_document2:
+    toc: false
+    extra_dependencies: ["bm"]
+title: Statistical Inference - Summary
+author: Maximilian Schneider
+date: "`r format(Sys.time(), '%d.%m.%Y')`"
+header-includes:
+  \AtBeginDocument{\let\maketitle\relax}
+  \pagenumbering{gobble}
+---
+
+**Derivatives of likelihood** \
+$\bm{s}(\bm\theta | \bm{x}) = \frac{\partial}{\partial \bm\theta} \ell(\bm\theta | \bm{x})$ \
+$J(\bm\theta | \bm{x}) = - \frac{\partial}{\partial \bm\theta} \bm{s}(\bm\theta | \bm{x}) = - \frac{\partial}{\partial \bm\theta \partial \bm\theta^T} \ell(\bm\theta | \bm{x})$ \
+$\bm{\mathcal{I}}(\bm\theta) = \mathbb{E}_{\bm\theta}(J(\bm\theta | \bm{X}))$
+
+**MSE stuff** \
+$\text{Bias}_{\bm\theta}(\hat{\bm\theta}) = \mathbb{E}_{\bm\theta}(\hat{\bm\theta}) - \bm\theta$ \
+$\mathbb{V}(\hat{\bm\theta}) = \mathbb{E}_{\bm\theta}((\hat{\bm\theta} - \mathbb{E}_{\bm\theta}(\hat{\bm\theta}))(\hat{\bm\theta} - \mathbb{E}_{\bm\theta}(\hat{\bm\theta}))^T) = \mathbb{E}_{\bm\theta}(\hat{\bm\theta}\hat{\bm\theta}^T) - \mathbb{E}_{\bm\theta}(\hat{\bm\theta})\mathbb{E}_{\bm\theta}(\hat{\bm\theta})^T$ \
+$\text{MSE}(\hat{\bm\theta}) = \mathbb{E}_{\bm\theta}((\hat{\bm\theta} - \bm\theta)(\hat{\bm\theta} - \bm\theta)^T) = \mathbb{V}(\hat{\bm\theta}) + \text{Bias}_{\bm\theta}(\hat{\bm\theta}) \text{Bias}_{\bm\theta}(\hat{\bm\theta})^T$
+
+**Fisher-regular distribution family** \
+Support does not depend on $\bm\theta \in \bm\Theta$. \
+$\bm\Theta$ is open in $\mathbb{R}^k$. \
+The first and second derivatives w.r.t. $\bm\theta$ exist and are finite $\forall \bm{x}$. \
+For both $f(\bm\theta | \bm{x})$ and $\ell(\bm\theta | \bm{x})$, first and second differentiation w.r.t. $\bm\theta$ and integration w.r.t $\bm{x}$ is interchangeable. \
+*Properties* \
+$\mathbb{E}_{\bm\theta}(\bm{s}(\bm\theta | \bm{X})) = \bm{0}$ \
+$\mathbb{V}_{\bm\theta}(\bm{s}(\bm\theta | \bm{X})) = \bm{\mathcal{I}}(\bm\theta)$
+
+**Sufficiency of statistic** \
+$f(\bm{x} | \bm\theta, \bm{T}(\bm{x}) = \bm{t}) = f(\bm{x} | \bm{T}(\bm{x}) = \bm{t})$ \
+*Factorization theorem / Neyman criterion* \
+$\Leftrightarrow f(\bm{x} | \bm\theta) = h(\bm{x})g(\bm{T}(\bm{x} | \bm\theta))$
+
+**Exponential family** \
+$f(\bm{x} | \bm\theta) = h(\bm{x}) c(\bm\theta) \exp(\bm\gamma(\bm\theta)^T\bm{T}(\bm{x}))$ \
+*Properties* \
+(Minimum) sufficient
+
+**Location-scale family** \
+$F(x | a, b) = F_0(\frac{x - a}{b})$ \
+$f(x | a, b) = \frac{1}{b} f_0(\frac{x - a}{b})$
+
+**Risk** \
+$R(\hat{\bm\theta}, \bm\theta) = \mathbb{E}_{\bm\theta}(L(\hat{\bm\theta}, \bm\theta)) = \int_\mathcal{X} L(\hat{\bm\theta}, \bm\theta) f(\bm{x} | \bm\theta) d\bm{x}$
+
+**Rao-Blackwellization** \
+$\hat{\bm\theta}_{RB} = \mathbb{E}_{\bm\theta}(\hat{\bm\theta} | \bm{T}(\bm{x}))$ \
+*Assumptions* \
+$\bm{T}(\bm{x})$ sufficient for $\bm\theta$ \
+$\hat{\bm\theta}$ unbiased for $\bm\theta$ \
+*Properties* \
+$\mathbb{V}_{\bm\theta}(\hat{\bm\theta}_{RB}) \leq \mathbb{V}_{\bm\theta}(\hat{\bm\theta})$ \
+$\mathbb{V}_{\bm\theta}(\hat{\bm\theta}_{RB}) = \mathbb{V}_{\bm\theta}(\hat{\bm\theta}) \Leftrightarrow \hat{\bm\theta}$ only depends on $\bm{T}(\bm{x})$
+
+**Asymptotic normality** \
+
+**Delta method** \
+
+**Quotienten Regel** \
+
+**UMPU test** \
+
+**Metropolis-Hastings and Gibbs** \
+
+**Weakly consistent** \
+
+**Jeffrey's prior** \
+
+**Kernels**
+

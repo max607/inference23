@@ -264,7 +264,67 @@ mean((x_bayes - p)^2) - (mean(x_bayes) - p)^2
 
 # Bayesian inference
 
-* $f(\mu, \sigma^2 | x) \propto \text{likelihood} \times \text{prior}_\mu \times \text{prior}_{\sigma^2}\,,$ $\mu$ and $\sigma$ independent
+* $\mu$ and $\sigma$ independent
+  * $f(\mu, \sigma^2 | x) \propto \text{likelihood} \times \text{prior}_\mu \times \text{prior}_{\sigma^2}$
+  * $f(\mu, \sigma^2 | x) \propto f(x | \mu, \sigma^2) \times f(\mu) \times f(\sigma^2)$
+  * $f(\mu | x) \propto f(x | \mu, \sigma^2) \times f(\mu)$
+* $\text{cov}(\hat{y}) =$ estimation uncertainty + data generating process uncertainty
 
 <!-- page 124 -->
+
+# MCMC
+
+* Metropolis-Hastings
+* Gibbs
+
+```r
+set.seed(1)
+
+r <- 4
+f <- dnorm  # want to sample from
+q <- function(x) 1/r  # proposal
+alpha <- function(x1, x2, f, q) min(f(x2) / q(x2) / f(x1) * q(x1), 1)  # p accept
+
+n <- 3e4; x <- numeric(n + 1); count <- 0
+for (i in seq_len(n)) {
+  y <- x[[i]] + runif(1, -r/2, r/2)  # candidate point
+  x[[i + 1]] <- if (runif(1) < alpha(x[[i]], y, dnorm, q)) {
+    count <- count + 1
+    y
+  } else x[[i]]
+}
+count / n
+```
+
+# FAQ - Exercises
+
+* Proper density: non-negative, integrate to 1
+* Can a prior distribution which assigns 0 probability mass to negative values be used with a identity link in GLMs?
+* Handbook of Markov Chain Monte Carlo
+
+# Exam preparation
+
+## Important Stuff
+
+* [X] Fisher-information (matrix)
+* [X] Neyman criterion / factorization theorem
+* [o] Exponential family
+  * [X] Definition
+  * [X] (Minimum) Sufficiency in exponential family
+  * [ ] All properties
+* [X] Fisher-regularity
+* [ ] Risk
+* [ ] Rao-Blackwellization
+* [ ] Asymptotic normality
+* [ ] Delta method
+* [ ] Quotienten Regel
+* [ ] UMPU test
+* [ ] Metropolis-Hastings and Gibbs
+* [ ] Weakly consistent
+* [X] MSE
+* [ ] Jeffrey's prior
+
+## Summary
+
+blub
 
