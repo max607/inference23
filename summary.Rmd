@@ -11,7 +11,7 @@ geometry: margin=10mm
 output:
   bookdown::pdf_document2:
     toc: false
-    extra_dependencies: ["bm"]
+    extra_dependencies: ["bm","algpseudocode"]
 title: Statistical Inference - Summary
 author: Maximilian Schneider
 date: "`r format(Sys.time(), '%d.%m.%Y')`"
@@ -22,8 +22,8 @@ header-includes:
 
 **Derivatives of likelihood** \
 $\bm{s}(\bm\theta | \bm{x}) = \frac{\partial}{\partial \bm\theta} \ell(\bm\theta | \bm{x})$ \
-$J(\bm\theta | \bm{x}) = - \frac{\partial}{\partial \bm\theta} \bm{s}(\bm\theta | \bm{x}) = - \frac{\partial}{\partial \bm\theta \partial \bm\theta^T} \ell(\bm\theta | \bm{x})$ \
-$\bm{\mathcal{I}}(\bm\theta) = \mathbb{E}_{\bm\theta}(J(\bm\theta | \bm{X}))$
+$J_s(\bm\theta | \bm{x}) = \frac{\partial}{\partial \bm\theta} \bm{s}(\bm\theta | \bm{x}) = \frac{\partial}{\partial \bm\theta \partial \bm\theta^T} \ell(\bm\theta | \bm{x})$ \
+$\bm{\mathcal{I}}(\bm\theta) = -\mathbb{E}_{\bm\theta}(J_s(\bm\theta | \bm{X}))$
 
 **MSE stuff** \
 $\text{Bias}_{\bm\theta}(\hat{\bm\theta}) = \mathbb{E}_{\bm\theta}(\hat{\bm\theta}) - \bm\theta$ \
@@ -66,16 +66,87 @@ $\mathbb{V}_{\bm\theta}(\hat{\bm\theta}_{RB}) \leq \mathbb{V}_{\bm\theta}(\hat{\
 $\mathbb{V}_{\bm\theta}(\hat{\bm\theta}_{RB}) = \mathbb{V}_{\bm\theta}(\hat{\bm\theta}) \Leftrightarrow \hat{\bm\theta}$ only depends on $\bm{T}(\bm{x})$
 
 **Asymptotic normality** \
+$\hat{\bm\theta}_n \overset{a}{\sim} N(\bm\theta, V(\bm\theta)/n)$ \
+$\bm{A}_n^{1/2}(\hat{\bm\theta}_n - \bm\theta)\overset{d}{\rightarrow} N(\bm{0}, V(\bm\theta))\; \text{for}\; n \rightarrow \infty$ \
+$\sqrt{n}(\hat{\bm\theta}_n - \bm\theta)\overset{d}{\rightarrow} N(\bm{0}, V(\bm\theta))\; \text{for}\; n \rightarrow \infty$ \
+*Assumptions* \
+$V(\bm\theta)$ positive semi-definite \
+$\lambda_\text{min}(\bm{A}_n) \overset{\mathbb{P}}{\rightarrow} \infty$
+
+**Delta method (scalar)** \
+$\sqrt{n}(h(\hat\theta_n) - h(\theta)) \overset{d}{\rightarrow} N(0, (h'(\theta))^2 V(\theta))$ \
+*Assumptions* \
+$\sqrt{n}(\hat\theta_n - \theta) \overset{d}{\rightarrow} N(0, V(\theta))$ \
+$\forall \theta$, where $h$ is continuously differentiable with $h'(\theta) \neq 0$
 
 **Delta method** \
+$\sqrt{n}(\bm{h}(\hat{\bm\theta}_n) - \bm{h}(\bm\theta)) \overset{d}{\rightarrow} N(\bm{0}, J_h(\bm\theta) V(\bm\theta) J_h(\bm\theta)^T)$, \
+where $J_h(\bm\theta) = \frac{\partial}{\partial \bm\theta} \bm{h}(\bm\theta)$. \
+*Assumptions* \
+$\sqrt{n}(\hat{\bm\theta}_n - \bm\theta) \overset{d}{\rightarrow} N(\bm{0}, V(\bm\theta))$. \
+$\forall \bm\theta$, where $\bm{h}$ is component-wise continuously partially differentiable with every row of $J_h(\bm\theta) \neq \bm{0}$. \
+$J_h(\bm\theta)$ has full rank.
 
 **Quotienten Regel** \
+$f'(x) = \frac{g'(x)h(x) - g(x)h'(x)}{h^2(x)}$. \
+*Assumptions* \
+$f(x) = \frac{g(x)}{h(x)}$. \
 
 **UMPU test** \
+$\phi(\bm{x}) =
+   \begin{cases}
+     1 & \text{if}\; T(\bm{x}) < c_1, \\
+     \gamma_1 & \text{if}\; T(\bm{x}) = c_1, \\
+     0 & \text{if}\; c_1 < T(\bm{x}) < c_2, \\
+     \gamma_2 & \text{if}\; T(\bm{x}) = c_2, \\
+     1 & \text{if}\; T(\bm{x}) > c_2,
+   \end{cases}$ \
+where $\frac{1}{2} \alpha = \mathbb{P}(T(\bm{x}) < c_1 | H_0) + \gamma_1 \mathbb{P}(T(\bm{x}) = c_1 | H_0)$.
 
-**Metropolis-Hastings and Gibbs** \
+**Likelihood ratio** \
 
-**Weakly consistent** \
+**Power function** \
+$g_\phi(\bm\theta) = \mathbb{E}_{\bm\theta}(\phi(\bm{X}))$
+
+**Metropolis-Hastings** \
+Target distribution $f$. Proposal distribution $q$.
+\vspace{5px}
+\hrule
+\begin{algorithmic}
+\State Choose starting value $\theta_0$.
+\For{$t = 1,...,T$}
+  \State Draw $\theta^*$ from $q_{\theta_{t-1}}$.
+  \If{$\text{Ber}\left(p = \alpha(\theta_{t-1}, \theta_t)\right) = \min(\frac{f(\theta_t) q_{\theta_t}(\theta_{t-1})}{f(\theta_{t-1}) q_{\theta_{t-1}}(\theta_t)}, 1)$}
+    \State $\theta_t \gets \theta^*$.
+  \Else
+    \State $\theta_t \gets \theta^{t-1}$.
+  \EndIf
+\EndFor \\
+\Return $\theta_{B+1}, ..., \theta_T$, where $\theta_0, ..., \theta_B$ is burn-in phase.
+\end{algorithmic}
+\hrule
+
+**Gibbs**
+\vspace{5px}
+\hrule
+\begin{algorithmic}
+\State Choose starting value $\bm\theta_0$.
+\For{$t = 1,...,T$}
+  \For{$k = 1,...,K$}
+    \State Draw $\theta_{t,k}$ from $f(\theta_{t, k} | \bm\theta_{t, 1,...,k-1}, \bm\theta_{t-1, k+1,...,K})$.
+  \EndFor
+\EndFor \\
+\Return $\bm\theta_{B+1}, ..., \bm\theta_T$, where $\bm\theta_0, ..., \bm\theta_B$ is burn-in phase.
+\end{algorithmic}
+\hrule
+
+**Consistency** \
+$\hat{\bm\theta}_n$ weakly consistent for $\bm\theta \Leftrightarrow \hat{\bm\theta}_n \overset{\mathbb{P}}{\rightarrow} \bm\theta \Leftrightarrow \\ \underset{\epsilon > 0}{\forall}\ \underset{\bm\theta}{\forall}: \underset{n \rightarrow \infty}{\lim} \mathbb{P}_{\bm\theta}(||\hat{\bm\theta}_n - \bm\theta|| \leq \epsilon) = 1$ \
+$\hat{\bm\theta}_n$ MSE-consistent for $\bm\theta \Leftrightarrow \underset{\bm\theta}{\forall}: \underset{n \rightarrow \infty}{\lim} \text{MSE}_{\bm\theta}(\hat{\bm\theta}_n) = 0$ \
+$\hat{\bm\theta}_n$ strongly consistent for $\bm\theta \Leftrightarrow \underset{\bm\theta}{\forall}: \mathbb{P}_{\bm\theta}(\underset{n \rightarrow \infty}{\lim} \hat{\bm\theta}_n = \bm\theta) = 1$
+*Properties* \
+MSE-consistency $\Rightarrow$ weak consistency. \
+Continuous mapping theorem: $\hat{\bm\theta}_n$ ... consistent $\Rightarrow g(\hat{\bm\theta}_n)$ ... consistent for $g(\bm\theta)$ if $g$ is a continuous mapping.
 
 **Jeffrey's prior** \
 
